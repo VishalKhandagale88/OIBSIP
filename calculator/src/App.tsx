@@ -205,6 +205,7 @@ function App() {
             </div>
           </div>
         </div>
+        <p className="text-primary">Developed by Vishal Khandagale</p>
       </div>
     </>
   );
