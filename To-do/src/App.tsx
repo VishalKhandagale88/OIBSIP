@@ -1,35 +1,86 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (title.trim() !== "" && description.trim() !== "") {
+      setTodos([...todos, { title, description }]);
+      setTitle("");
+      setDescription("");
+    }
+  };
+
+  const handleDelete = (index: number) => {
+    const updatedTodos = todos.filter((todo, i) => i !== index);
+    setTodos(updatedTodos);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <div className="container-fluid vh-100 bg-primary-subtle">
+        <div className="my-3 row bg-light-subtle text-dark">
+          <h3>To-Do List Web App </h3>
+        </div>
+        <div className="row ">
+          <div className="col bg-primary-subtle ">
+            <div className="rounded-2 input-container p-4 bg-white d-flex align-items-center justify-content-center ">
+              <form
+                action=""
+                className="rounded-3 border-dark d-flex flex-column"
+              >
+                <div className="my-4">
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    value={title}
+                    required
+                    className="bg-light-subtle border-1"
+                    onChange={handleTitleChange}
+                    style={{ width: "500px" ,height:"50px"}}
+                  />
+                </div>
+                <textarea
+                  placeholder="Description"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  style={{ width: "500px" ,height:"400px"}}
 
-export default App
+                ></textarea>
+                <button className="btn btn-success mt-3" onClick={handleSubmit}>
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div className="col bg-light p-4">
+            <div className="row bg-primary-subtle  rounded-2">
+              {todos.map((todo, index) => (
+                <div className="todo" key={index}>
+                  <div className="d-flex align-items-baseline justify-content-around">
+                    <h3>{todo.title}</h3>
+                    <p>{todo.description}</p>
+                    <button className="btn border border-1 border-dark" onClick={() => handleDelete(index)}>❌</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+export default App;
