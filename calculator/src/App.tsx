@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import f from "../src/assets/react.svg"
 
 function App() {
   const [value, setValue] = useState("");
@@ -10,6 +11,7 @@ function App() {
 
   const handleClear = () => {
     setValue("");
+    setAnswer("")
   };
 
   const handleDel = () => {
@@ -27,7 +29,9 @@ function App() {
 
   return (
     <>
-      <div className="container  vh-100 d-flex align-items-center justify-content-center bg-dark">
+      <div
+        className="container  vh-100 d-flex align-items-center justify-content-center bg-dark"    
+      >
         <div
           className="container  bg-light border rounded"
           style={{ maxWidth: "60vh" }}
@@ -205,7 +209,6 @@ function App() {
             </div>
           </div>
         </div>
-        <p className="text-primary">Developed by Vishal Khandagale</p>
       </div>
     </>
   );

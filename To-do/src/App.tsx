@@ -48,15 +48,14 @@ function App() {
                     required
                     className="bg-light-subtle border-1"
                     onChange={handleTitleChange}
-                    style={{ width: "500px" ,height:"50px"}}
+                    style={{ width: "500px", height: "50px" }}
                   />
                 </div>
                 <textarea
                   placeholder="Description"
                   value={description}
                   onChange={handleDescriptionChange}
-                  style={{ width: "500px" ,height:"400px"}}
-
+                  style={{ width: "500px", height: "400px" }}
                 ></textarea>
                 <button className="btn btn-success mt-3" onClick={handleSubmit}>
                   Save
@@ -66,13 +65,23 @@ function App() {
           </div>
 
           <div className="col bg-light p-4">
-            <div className="row bg-primary-subtle  rounded-2">
+            <div className="row  rounded-2">
               {todos.map((todo, index) => (
-                <div className="todo" key={index}>
-                  <div className="d-flex align-items-baseline justify-content-around">
-                    <h3>{todo.title}</h3>
-                    <p>{todo.description}</p>
-                    <button className="btn border border-1 border-dark" onClick={() => handleDelete(index)}>❌</button>
+                <div
+                  className="border border-2 border-dark p-3 mt-2  bg-primary-subtle"
+                  key={index}
+                >
+                  <div className=" d-flex align-items-baseline justify-content-between">
+                    <h3 className="col">{todo.title}</h3>
+                    <p className="col">{todo.description}</p>
+                    <div className="col-1">
+                      <button
+                        className="btn border border-1 border-dark"
+                        onClick={() => handleDelete(index)}
+                      >
+                        ❌
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
